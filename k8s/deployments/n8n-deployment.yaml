@@ -25,7 +25,7 @@ spec:
       containers:
         - env:
             - name: DB_POSTGRESDB_DATABASE
-              value: evolution
+              value: n8n
             - name: DB_POSTGRESDB_HOST
               value: postgres
             - name: DB_POSTGRESDB_PASSWORD
