@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.35.0 (HEAD)
+  labels:
+    io.kompose.service: n8n
+  name: n8n
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: n8n
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose.yml
+        kompose.version: 1.35.0 (HEAD)
+      labels:
+        io.kompose.service: n8n
+    spec:
+      containers:
+        - env:
+            - name: DB_POSTGRESDB_DATABASE
+              value: evolution
+            - name: DB_POSTGRESDB_HOST
+              value: postgres
+            - name: DB_POSTGRESDB_PASSWORD
+              value: pass
+            - name: DB_POSTGRESDB_PORT
+              value: "5432"
+            - name: DB_POSTGRESDB_USER
+              value: user
+            - name: DB_TYPE
+              value: postgresdb
+            - name: GENERIC_TIMEZONE
+              value: America/Sao_Paulo
+            - name: N8N_EDITOR_BASE_URL
+              value: http://192.168.15.6:5678
+            - name: N8N_HOST
+              value: 0.0.0.0
+            - name: N8N_PROTOCOL
+              value: http
+            - name: N8N_SECURE_COOKIE
+              value: "false"
+            - name: WEBHOOK_URL
+              value: http://n8n:5678/
+          image: n8nio/n8n:latest
+          name: n8n
+          ports:
+            - containerPort: 5678
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /home/node/.n8n
+              name: n8n-claim0
+      restartPolicy: Always
+      volumes:
+        - name: n8n-claim0
+          persistentVolumeClaim:
+            claimName: n8n-claim0
