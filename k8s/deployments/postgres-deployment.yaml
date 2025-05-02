@@ -29,7 +29,7 @@ spec:
             - max_connections=1000
             - -c
             - listen_addresses=*
-        - envFrom:
+          envFrom:
             - configMapRef:
                 name: postgres-config
             - secretRef:
