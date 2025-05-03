@@ -2,7 +2,6 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: n8n-config
-  namespace: kompose-test
 data:
   DB_POSTGRESDB_DATABASE: "n8n"
   DB_POSTGRESDB_HOST: "postgres"

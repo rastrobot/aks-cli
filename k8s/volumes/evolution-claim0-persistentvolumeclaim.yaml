@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   labels:
-    io.kompose.service: evolution-claim0
+    app: evolution-claim0
   name: evolution-claim0
 spec:
   accessModes:

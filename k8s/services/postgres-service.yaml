@@ -5,7 +5,7 @@ metadata:
     kompose.cmd: kompose convert -f docker-compose.yml
     kompose.version: 1.35.0 (HEAD)
   labels:
-    io.kompose.service: postgres
+    app: postgres
   name: postgres
 spec:
   type: NodePort
@@ -15,4 +15,4 @@ spec:
       targetPort: 5432
       nodePort: 30432
   selector:
-    io.kompose.service: postgres
+    app: postgres

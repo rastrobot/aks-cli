@@ -2,6 +2,3 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: postgres-config
-  namespace: kompose-test
-data:
-  POSTGRES_HOST_AUTH_METHOD: trust

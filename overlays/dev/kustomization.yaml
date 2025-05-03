@@ -1,0 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namePrefix: dev-
+namespace: dev
+
+resources:
+  - ../../k8s
+
+configMapGenerator:
+  - name: postgres-config
+    behavior: merge
+    literals:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      
+patches:
+  - path: n8n-replicas-patch.yaml
+    target:
+      kind: Deployment
+      name: n8n
+  - path: evolution-pvc-patch.yaml
+    target:
+      kind: Deployment
+      name: evolution

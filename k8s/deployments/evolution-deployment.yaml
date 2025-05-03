@@ -5,13 +5,13 @@ metadata:
     kompose.cmd: kompose convert -f docker-compose.yml
     kompose.version: 1.35.0 (HEAD)
   labels:
-    io.kompose.service: evolution
+    app: evolution
   name: evolution
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: evolution
+      app: evolution
   strategy:
     type: Recreate
   template:
@@ -20,14 +20,19 @@ spec:
         kompose.cmd: kompose convert -f docker-compose.yml
         kompose.version: 1.35.0 (HEAD)
       labels:
-        io.kompose.service: evolution
+        app: evolution
     spec:
       containers:
-        - envFrom:
+        - name: evolution-api
+          image: atendai/evolution-api
+          envFrom:
             - configMapRef:
-                name: evolution-configmap
+                name: evolution-config
             - secretRef:
                 name: evolution-secret
+          volumeMounts:
+            - mountPath: /evolution/instances
+              name: evolution-claim0
       restartPolicy: Always
       volumes:
         - name: evolution-claim0

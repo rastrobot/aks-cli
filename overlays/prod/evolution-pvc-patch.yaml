@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: evolution
+spec:
+  template:
+    spec:
+      volumes:
+        - name: evolution-claim0
+          persistentVolumeClaim:
+            claimName: prod-evolution-claim0
