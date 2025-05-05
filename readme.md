@@ -1,15 +1,21 @@
 kubectl apply -k k8s/
 
 
-kubectl apply -k k8s/overlays/dev
-kubectl apply -k k8s/overlays/prod
-kubectl apply -k k8s/overlays/staging
+kubectl apply -k overlays/dev
+kubectl apply -k overlays/prod
+kubectl apply -k overlays/staging
+
+kubectl delete -k overlays/dev
+kubectl delete -k k8s
 
 Se quiser 100% de confiança no que vai mudar, pode usar:
 kubectl diff -k overlays/dev
 
 Para ver o timestamp exato da criação do Pod:
 kubectl get pod dev-n8n-123 -o jsonpath="{.metadata.creationTimestamp}"
+
+kubectl port-forward svc/dev-evolution 8080:8080 -n dev
+
 
 # Se algum Pod está em erro, travado ou com problemas
 kubectl get pods --all-namespaces

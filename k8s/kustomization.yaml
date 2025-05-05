@@ -11,11 +11,13 @@ resources:
 - secrets/evolution-secret.yaml
 
 - deployments/postgres-deployment.yaml
+- deployments/redis-deployment.yaml
 - deployments/n8n-deployment.yaml
 - deployments/evolution-deployment.yaml
 - deployments/nginx-deployment.yaml
 
 - services/postgres-service.yaml
+- services/redis-service.yaml
 - services/n8n-service.yaml
 - services/evolution-service.yaml
 - services/nginx-service.yaml

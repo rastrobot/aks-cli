@@ -12,12 +12,19 @@ configMapGenerator:
     behavior: merge
     literals:
       - POSTGRES_HOST_AUTH_METHOD=trust
-      
+
+secretGenerator:
+  - name: evolution-secret
+    behavior: merge
+    literals:
+      - CACHE_REDIS_URI=redis://dev-redis:6379/6
+
 patches:
   - path: n8n-replicas-patch.yaml
     target:
       kind: Deployment
       name: n8n
+      
   - path: evolution-pvc-patch.yaml
     target:
       kind: Deployment
