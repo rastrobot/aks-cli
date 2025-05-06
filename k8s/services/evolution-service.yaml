@@ -8,6 +8,7 @@ metadata:
     app: evolution
   name: evolution
 spec:
+  type: ClusterIP
   ports:
     - name: "evolution"
       port: 8080

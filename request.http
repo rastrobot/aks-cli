@@ -1,0 +1,27 @@
+###################################################################
+### https://doc.evolution-api.com/v1/pt/get-started/introduction          
+### https://www.postman.com/agenciadgcode/evolution-api/request/bpuzn2x/fetch-instances                                           ###  
+###################################################################
+POST http://localhost:8080/message/sendLocation/teste
+Content-Type: application/json
+apikey: 5CCECED5B7D1-476D-911F-EAEE2A027968
+
+{
+  "number": "5527999189700",
+  "latitude": -23.0696347,
+  "longitude": -50.4357913,
+  "address": "Veiculo ligado",
+  "name": "teste"
+ 
+}
+
+###
+### Enviar mensagem de texto
+POST http://localhost:8080/message/sendText/teste
+Content-Type: application/json
+apikey: 5CCECED5B7D1-476D-911F-EAEE2A027968
+
+{
+  "number": "5527999189700",
+  "text": "teste"
+}
