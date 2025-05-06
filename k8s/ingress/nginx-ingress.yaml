@@ -1,10 +1,11 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: default-backend-ingress
+  name: nginx-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  ingressClassName: nginx
   rules:
   - host: "*.local"
     http:
@@ -13,6 +14,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: default-backend
+            name: nginx
             port:
               number: 80

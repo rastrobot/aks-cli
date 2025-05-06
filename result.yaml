@@ -237,7 +237,7 @@ spec:
     protocol: TCP
     targetPort: 80
   selector:
-    app: default-backend
+    app: nginx
 ---
 apiVersion: v1
 kind: Service
@@ -398,15 +398,15 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: default-backend
+      app: nginx
   template:
     metadata:
       labels:
-        app: default-backend
+        app: nginx
     spec:
       containers:
       - image: nginx:stable
-        name: default-backend
+        name: nginx
         ports:
         - containerPort: 80
 ---
