@@ -8,11 +8,10 @@ metadata:
     app: n8n
   name: n8n
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
     - name: "n8n"
       port: 5678
       targetPort: 5678
-      nodePort: 30678
   selector:
     app: n8n

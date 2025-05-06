@@ -7,7 +7,7 @@ resources:
 - configmaps/evolution-configmap.yaml
 
 - secrets/postgres-secret.yaml
-- secrets/n8n-secret.yaml
+# - secrets/n8n-secret.yaml
 - secrets/evolution-secret.yaml
 
 - deployments/postgres-deployment.yaml

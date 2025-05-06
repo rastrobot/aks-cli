@@ -3,4 +3,4 @@ kind: Deployment
 metadata:
   name: n8n
 spec:
-  replicas: 3
+  replicas: 2
