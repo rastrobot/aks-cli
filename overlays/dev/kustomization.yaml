@@ -14,8 +14,14 @@ configMapGenerator:
       - POSTGRES_HOST_AUTH_METHOD=trust
 
 secretGenerator:
+  - name: postgres-secret
+    behavior: create
+    literals:
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_USER=user
+      
   - name: evolution-secret
-    behavior: merge
+    behavior: create
     literals:
       - CACHE_REDIS_URI=redis://dev-redis:6379/6
       - AUTHENTICATION_API_KEY=teste
