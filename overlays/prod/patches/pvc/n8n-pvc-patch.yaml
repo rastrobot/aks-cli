@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: n8n
+spec:
+  template:
+    spec:
+      containers:
+        - name: n8n
+          volumeMounts:
+            - name: n8n-claim0
+              mountPath: /home/node/.n8n
+      volumes:
+        - name: n8n-claim0
+          persistentVolumeClaim:
+            claimName: prod-n8n-claim0

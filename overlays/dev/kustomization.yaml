@@ -33,12 +33,32 @@ secretGenerator:
       - DB_POSTGRESDB_HOST=dev-postgres
 
 patches:
-  - path: n8n-replicas-patch.yaml
+  - path: patches/pvc/n8n-pvc-patch.yaml
     target:
       kind: Deployment
       name: n8n
-      
-  - path: evolution-pvc-patch.yaml
+
+  - path: patches/pvc/postgres-pvc-patch.yaml
+    target:
+      kind: Deployment
+      name: postgres
+patches:
+  - path: patches/pvc/redis-pvc-patch.yaml
+    target:
+      kind: Deployment
+      name: redis
+
+  - path: patches/pvc/evolution-pvc-patch.yaml
+    target:
+      kind: Deployment
+      name: evolution
+
+  - path: patches/replicas/n8n-replicas-patch.yaml
+    target:
+      kind: Deployment
+      name: n8n
+
+  - path: patches/replicas/evolution-replicas-patch.yaml
     target:
       kind: Deployment
       name: evolution

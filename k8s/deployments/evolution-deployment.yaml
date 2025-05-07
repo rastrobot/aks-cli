@@ -8,7 +8,7 @@ metadata:
     app: evolution
   name: evolution
 spec:
-  replicas: 1
+  # replicas: 1
   selector:
     matchLabels:
       app: evolution
@@ -23,7 +23,7 @@ spec:
         app: evolution
     spec:
       containers:
-        - name: evolution-api
+        - name: evolution
           image: atendai/evolution-api
           envFrom:
             - configMapRef:
