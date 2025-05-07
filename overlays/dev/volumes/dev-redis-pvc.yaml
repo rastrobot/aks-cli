@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
+  name: dev-redis-pvc
   labels:
-    app: n8n-claim0
-  name: n8n-claim0
+    app: redis
 spec:
   accessModes:
     - ReadWriteOnce
