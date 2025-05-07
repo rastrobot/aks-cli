@@ -18,10 +18,16 @@ secretGenerator:
     behavior: merge
     literals:
       - CACHE_REDIS_URI=redis://dev-redis:6379/6
-
+      - AUTHENTICATION_API_KEY=teste
+      - DATABASE_CONNECTION_URI=postgresql://user:pass@dev-postgres:5432/dev-evolution?schema=public
+      - DATABASE_URL=postgresql://user:pass@dev-postgres:5432/dev-evolution?schema=public
+      - DATABASE_CONNECTION_CLIENT_NAME=evolution_exchange
+  
   - name: n8n-secret
     behavior: create
     literals:
+      - DB_POSTGRESDB_DATABASE=dev-n8n
+      - DB_POSTGRESDB_PORT=5432
       - DB_POSTGRESDB_PASSWORD=pass
       - DB_POSTGRESDB_USER=user
       - DB_POSTGRESDB_HOST=dev-postgres
