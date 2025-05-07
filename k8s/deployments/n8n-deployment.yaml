@@ -22,14 +22,18 @@ spec:
       labels:
         app: n8n
     spec:
+      initContainers:
+        - name: wait-for-postgres
+          image: busybox
+          command: ['sh', '-c', 'until nc -z dev-postgres 5432; do echo waiting for postgres; sleep 2; done;']
       containers:
-        - envFrom:
+        - name: n8n
+          image: n8nio/n8n:latest
+          envFrom:
             - configMapRef:
                 name: n8n-config
             - secretRef:
                 name: n8n-secret
-          image: n8nio/n8n:latest
-          name: n8n
           ports:
             - containerPort: 5678
               protocol: TCP

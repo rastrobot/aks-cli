@@ -4,30 +4,30 @@ kind: Kustomization
 resources:
 - configmaps/postgres-configmap.yaml
 - configmaps/n8n-configmap.yaml
-- configmaps/evolution-configmap.yaml
+#- configmaps/evolution-configmap.yaml
 
 - secrets/postgres-secret.yaml
-# - secrets/n8n-secret.yaml
+# #- secrets/n8n-secret.yaml
 - secrets/evolution-secret.yaml
 
 - deployments/postgres-deployment.yaml
 - deployments/redis-deployment.yaml
 - deployments/n8n-deployment.yaml
-- deployments/evolution-deployment.yaml
+#- deployments/evolution-deployment.yaml
 - deployments/nginx-deployment.yaml
 
 - services/postgres-service.yaml
 - services/redis-service.yaml
 - services/n8n-service.yaml
-- services/evolution-service.yaml
+#- services/evolution-service.yaml
 - services/nginx-service.yaml
 - services/ingress-nginx-lb-service.yaml
 
 - ingress/n8n-ingress.yaml
-- ingress/evolution-ingress.yaml
+#- ingress/evolution-ingress.yaml
 - ingress/nginx-ingress.yaml
 
-- volumes/evolution-claim0-persistentvolumeclaim.yaml
+#- volumes/evolution-claim0-persistentvolumeclaim.yaml
 - volumes/n8n-claim0-persistentvolumeclaim.yaml
 - volumes/postgres-claim0-persistentvolumeclaim.yaml
 - volumes/redis-claim0-persistentvolumeclaim.yaml
