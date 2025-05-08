@@ -22,6 +22,7 @@ spec:
       labels:
         app: postgres
     spec:
+      restartPolicy: Always
       containers:
         - args:
             - postgres
@@ -39,11 +40,11 @@ spec:
           ports:
             - containerPort: 5432
               protocol: TCP
-          volumeMounts:
-            - mountPath: /var/lib/postgresql/data
-              name: postgres-claim0
-      restartPolicy: Always
-      volumes:
-        - name: postgres-claim0
-          persistentVolumeClaim:
-            claimName: postgres-claim0
+          # volumeMounts:
+          #   - mountPath: /var/lib/postgresql/data
+          #     name: postgres-claim0
+
+      # volumes:
+      #   - name: postgres-claim0
+      #     persistentVolumeClaim:
+      #       claimName: postgres-claim0

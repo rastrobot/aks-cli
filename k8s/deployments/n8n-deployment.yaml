@@ -22,10 +22,12 @@ spec:
       labels:
         app: n8n
     spec:
+    
       initContainers:
         - name: wait-for-postgres
           image: busybox
           command: ['sh', '-c', 'until nc -z dev-postgres 5432; do echo waiting for postgres; sleep 2; done;']
+      restartPolicy: Always
       containers:
         - name: n8n
           image: n8nio/n8n:latest
@@ -37,11 +39,11 @@ spec:
           ports:
             - containerPort: 5678
               protocol: TCP
-          volumeMounts:
-            - mountPath: /home/node/.n8n
-              name: n8n-claim0
-      restartPolicy: Always
-      volumes:
-        - name: n8n-claim0
-          persistentVolumeClaim:
-            claimName: n8n-claim0
+          # volumeMounts:
+          #   - mountPath: /home/node/.n8n
+          #     name: n8n-claim0
+
+      # volumes:
+      #   - name: n8n-claim0
+      #     persistentVolumeClaim:
+      #       claimName: n8n-claim0

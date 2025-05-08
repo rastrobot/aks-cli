@@ -8,9 +8,9 @@ spec:
       containers:
         - name: evolution
           volumeMounts:
-            - name: evolution-claim0
+            - name: dev-evolution-pvc
               mountPath: /evolution/instances
       volumes:
-        - name: evolution-claim0
+        - name: dev-evolution-pvc
           persistentVolumeClaim:
-            claimName: dev-evolution-claim0
+            claimName: dev-evolution-pvc
