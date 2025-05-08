@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: ev-n8n-pvcd
+  name: n8n-pvc
   labels:
     app: n8n
 spec:
@@ -10,3 +10,6 @@ spec:
   resources:
     requests:
       storage: 100Mi
+
+
+      

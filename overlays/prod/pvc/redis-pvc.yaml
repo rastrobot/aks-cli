@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: prod-redis-pvc
+  name: redis-pvc
   labels:
     app: redis
 spec:

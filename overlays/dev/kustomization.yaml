@@ -56,7 +56,7 @@ patches:
     target:
       kind: Deployment
       name: postgres
-patches:
+
   - path: patches/pvc/redis-pvc-patch.yaml
     target:
       kind: Deployment
