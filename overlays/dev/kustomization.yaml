@@ -16,6 +16,10 @@ configMapGenerator:
     behavior: merge
     literals:
       - POSTGRES_HOST_AUTH_METHOD=trust
+  - name: n8n-config
+    behavior: merge
+    literals:
+      - N8N_EDITOR_BASE_URL=http://dev-n8n:5678/
 
 secretGenerator:
   - name: postgres-secret

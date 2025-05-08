@@ -20,12 +20,16 @@ configMapGenerator:
     behavior: merge
     literals:
       - POSTGRES_HOST_AUTH_METHOD=trust
+  - name: n8n-config
+    behavior: merge
+    literals:
+      - N8N_EDITOR_BASE_URL=http://prod-n8n:5678/
 
 secretGenerator:
   - name: evolution-secret
     behavior: merge
     literals:
-      - CACHE_REDIS_URI=redis://dev-redis:6379/6
+      - CACHE_REDIS_URI=redis://prod-redis:6379/6
 
   # - name: n8n-secret
   #   behavior: create
