@@ -6,10 +6,10 @@ namespace: dev
 
 resources:
   - ../../k8s
-  - volumes/dev-evolution-pvc.yaml
-  - volumes/dev-n8n-pvc.yaml
-  - volumes/dev-postgres-pvc.yaml
-  - volumes/dev-redis-pvc.yaml
+  - volumes/evolution-pvc.yaml
+  - volumes/n8n-pvc.yaml
+  - volumes/postgres-pvc.yaml
+  - volumes/redis-pvc.yaml
 
 configMapGenerator:
   - name: postgres-config

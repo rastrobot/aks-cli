@@ -6,11 +6,11 @@ namespace: prod
 
 resources:
   - ../../k8s
-  - volumes/prod-evolution-pvc.yaml
-  - volumes/prod-n8n-pvc.yaml
-  - volumes/prod-postgres-pvc.yaml
-  - volumes/prod-redis-pvc.yaml
-  
+  - volumes/evolution-pvc.yaml
+  - volumes/n8n-pvc.yaml
+  - volumes/postgres-pvc.yaml
+  - volumes/redis-pvc.yaml
+
   - secrets/postgres-secret.yaml
   - secrets/n8n-secret.yaml
   - secrets/evolution-secret.yaml
