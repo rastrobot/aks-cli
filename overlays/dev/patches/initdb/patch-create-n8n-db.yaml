@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: n8n
+spec:
+  template:
+    spec:
+      initContainers:
+        - name: create-dev-n8n-db
+          image: postgres:15
+          env:
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: n8n-secret
+                  key: DB_POSTGRESDB_PASSWORD
+          command:
+            - sh
+            - -c
+            - |
+              until psql -h postgres -U "$DB_POSTGRESDB_USER" -tc "SELECT 1 FROM pg_database WHERE datname = 'dev-n8n'" | grep -q 1; do
+                echo "Creating dev-n8n DB..."; 
+                psql -h postgres -U "$DB_POSTGRESDB_USER" -c "CREATE DATABASE \"dev-n8n\"";
+                sleep 2;
+              done
+          envFrom:
+            - secretRef:
+                name: n8n-secret

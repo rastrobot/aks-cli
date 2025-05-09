@@ -68,3 +68,8 @@ patches:
     target:
       kind: Deployment
       name: evolution
+
+  - path: patches/initdb/patch-create-n8n-db.yaml
+    target:
+      kind: Deployment
+      name: n8n   
