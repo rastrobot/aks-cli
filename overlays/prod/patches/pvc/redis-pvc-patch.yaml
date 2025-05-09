@@ -8,9 +8,9 @@ spec:
       containers:
         - name: redis
           volumeMounts:
-            - name: redis-claim0
+            - name: prod-redis-pvc
               mountPath: /data
       volumes:
-        - name: redis-claim0
+        - name: prod-redis-pvc
           persistentVolumeClaim:
-            claimName: prod-redis-claim0
+            claimName: redis-pvc

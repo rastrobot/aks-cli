@@ -1,4 +1,3 @@
-# patches/evolution-pvc-patch.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -9,9 +8,9 @@ spec:
       containers:
         - name: evolution
           volumeMounts:
-            - name: evolution-claim0
+            - name: prod-evolution-pvc
               mountPath: /evolution/instances
       volumes:
-        - name: evolution-claim0
+        - name: prod-evolution-pvc
           persistentVolumeClaim:
-            claimName: prod-evolution-claim0
+            claimName: evolution-pvc

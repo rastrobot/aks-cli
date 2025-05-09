@@ -8,9 +8,9 @@ spec:
       containers:
         - name: postgres
           volumeMounts:
-            - name: postgres-claim0
+            - name: prod-postgres-pvc
               mountPath: /var/lib/postgresql/data
       volumes:
-        - name: postgres-claim0
+        - name: prod-postgres-pvc
           persistentVolumeClaim:
-            claimName: prod-postgres-claim0
+            claimName: postgres-pvc

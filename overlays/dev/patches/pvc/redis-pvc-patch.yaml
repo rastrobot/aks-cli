@@ -13,4 +13,4 @@ spec:
       volumes:
         - name: dev-redis-pvc
           persistentVolumeClaim:
-            claimName: dev-redis-pvc
+            claimName: redis-pvc

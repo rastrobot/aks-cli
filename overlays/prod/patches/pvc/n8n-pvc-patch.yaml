@@ -8,9 +8,9 @@ spec:
       containers:
         - name: n8n
           volumeMounts:
-            - name: n8n-claim0
+            - name: prod-n8n-pvc
               mountPath: /home/node/.n8n
       volumes:
-        - name: n8n-claim0
+        - name: prod-n8n-pvc
           persistentVolumeClaim:
-            claimName: prod-n8n-claim0
+            claimName: n8n-pvc

@@ -13,4 +13,4 @@ spec:
       volumes:
         - name: dev-evolution-pvc
           persistentVolumeClaim:
-            claimName: dev-evolution-pvc
+            claimName: evolution-pvc
