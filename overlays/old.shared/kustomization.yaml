@@ -1,0 +1,34 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# namePrefix: dev-
+namespace: shared
+
+resources:
+  - ../../k8s
+  - pvc/postgres-pvc.yaml
+  - pvc/redis-pvc.yaml
+
+configMapGenerator:
+  - name: postgres-config
+    behavior: merge
+    literals:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+
+secretGenerator:
+  - name: postgres-secret
+    behavior: create
+    literals:
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_USER=user
+
+patches:
+  - path: patches/pvc/postgres-pvc-patch.yaml
+    target:
+      kind: Deployment
+      name: postgres
+
+  - path: patches/pvc/redis-pvc-patch.yaml
+    target:
+      kind: Deployment
+      name: redis

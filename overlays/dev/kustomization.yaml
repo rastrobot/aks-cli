@@ -5,15 +5,14 @@ kind: Kustomization
 namespace: dev
 
 resources:
+  - namespace.yaml
   - ../../k8s
   - pvc/evolution-pvc.yaml
   - pvc/n8n-pvc.yaml
-  - pvc/postgres-pvc.yaml
-  - pvc/redis-pvc.yaml
 
 configMapGenerator:
   - name: postgres-config
-    behavior: merge
+    behavior: create
     literals:
       - POSTGRES_HOST_AUTH_METHOD=trust
   - name: n8n-config
@@ -21,20 +20,14 @@ configMapGenerator:
     literals:
       - N8N_EDITOR_BASE_URL=http://dev-n8n:5678/
 
-secretGenerator:
-  - name: postgres-secret
-    behavior: create
-    literals:
-      - POSTGRES_PASSWORD=pass
-      - POSTGRES_USER=user
-      
+secretGenerator:      
   - name: evolution-secret
     behavior: create
     literals:
       - CACHE_REDIS_URI=redis://redis:6379/6
       - AUTHENTICATION_API_KEY=teste
-      - DATABASE_CONNECTION_URI=postgresql://user:pass@postgres:5432/dev-evolution?schema=public
-      - DATABASE_URL=postgresql://user:pass@postgres:5432/dev-evolution?schema=public
+      - DATABASE_CONNECTION_URI=postgresql://user:pass@postgres.infra.svc.cluster.local:5432/dev-evolution?schema=public
+      - DATABASE_URL=postgresql://user:pass@postgres.infra.svc.cluster.local:5432/dev-evolution?schema=public
       - DATABASE_CONNECTION_CLIENT_NAME=evolution_exchange
   
   - name: n8n-secret
@@ -44,40 +37,30 @@ secretGenerator:
       - DB_POSTGRESDB_PORT=5432
       - DB_POSTGRESDB_PASSWORD=pass
       - DB_POSTGRESDB_USER=user
-      - DB_POSTGRESDB_HOST=postgres
+      - DB_POSTGRESDB_HOST=postgres.infra.svc.cluster.local
 
 patches:
+  - path: patches/initdb/patch-create-n8n-db.yaml
+    target:
+      kind: Deployment
+      name: n8n
+      
   - path: patches/pvc/n8n-pvc-patch.yaml
     target:
       kind: Deployment
       name: n8n
-
-  - path: patches/pvc/postgres-pvc-patch.yaml
-    target:
-      kind: Deployment
-      name: postgres
-
-  - path: patches/pvc/redis-pvc-patch.yaml
-    target:
-      kind: Deployment
-      name: redis
-
-  - path: patches/pvc/evolution-pvc-patch.yaml
-    target:
-      kind: Deployment
-      name: evolution
 
   - path: patches/replicas/n8n-replicas-patch.yaml
     target:
       kind: Deployment
       name: n8n
 
-  - path: patches/replicas/evolution-replicas-patch.yaml
+  - path: patches/pvc/evolution-pvc-patch.yaml
     target:
       kind: Deployment
       name: evolution
 
-  - path: patches/initdb/patch-create-n8n-db.yaml
+  - path: patches/replicas/evolution-replicas-patch.yaml
     target:
       kind: Deployment
-      name: n8n
+      name: evolution
