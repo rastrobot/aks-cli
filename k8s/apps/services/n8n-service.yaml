@@ -6,6 +6,7 @@ metadata:
     kompose.version: 1.35.0 (HEAD)
   labels:
     app: n8n
+    domain: automacao
   name: n8n
 spec:
   type: ClusterIP

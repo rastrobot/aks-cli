@@ -2,6 +2,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: n8n-config
+  labels:
+    app: n8n
+    domain: automacao
 data:
   DB_TYPE: "postgresdb"
   # DB_POSTGRESDB_SCHEMA: "n8n"

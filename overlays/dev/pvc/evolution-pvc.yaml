@@ -4,6 +4,7 @@ metadata:
   name: evolution-pvc
   labels:
     app: evolution
+    domain: automacao
 spec:
   accessModes:
     - ReadWriteOnce

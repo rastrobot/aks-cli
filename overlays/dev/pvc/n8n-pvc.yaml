@@ -4,6 +4,7 @@ metadata:
   name: n8n-pvc
   labels:
     app: n8n
+    domain: automacao
 spec:
   accessModes:
     - ReadWriteOnce
