@@ -47,3 +47,5 @@ EOF
 
 echo "✅ Finalizado! Agora abra um novo terminal ou rode: zsh"
 echo "🔤 Lembre-se de configurar a fonte 'MesloLGS NF' no Terminator para visualizar corretamente."
+
+echo Instalar fonte: https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#fonts

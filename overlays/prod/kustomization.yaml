@@ -5,71 +5,47 @@ kind: Kustomization
 namespace: prod
 
 resources:
+  - namespace.yaml
   - ../../k8s
   - pvc/evolution-pvc.yaml
   - pvc/n8n-pvc.yaml
-  - pvc/postgres-pvc.yaml
-  - pvc/redis-pvc.yaml
 
-  - secrets/postgres-secret.yaml
-  - secrets/n8n-secret.yaml
   - secrets/evolution-secret.yaml
+  - secrets/n8n-secret.yaml
 
 configMapGenerator:
   - name: postgres-config
-    behavior: merge
+    behavior: create
     literals:
       - POSTGRES_HOST_AUTH_METHOD=trust
+      
   - name: n8n-config
     behavior: merge
     literals:
-      - N8N_EDITOR_BASE_URL=http://prod-n8n:5678/
-
-secretGenerator:
-  - name: evolution-secret
-    behavior: merge
-    literals:
-      - CACHE_REDIS_URI=redis://prod-redis:6379/6
-
-  # - name: n8n-secret
-  #   behavior: create
-  #   literals:
-  #     - DB_POSTGRESDB_PASSWORD=pass
-  #     - DB_POSTGRESDB_USER=user
-  #     - DB_POSTGRESDB_HOST=dev-postgres
+      - N8N_EDITOR_BASE_URL=http://dev-n8n:5678/
 
 patches:
+  - path: patches/initdb/patch-create-n8n-db.yaml
+    target:
+      kind: Deployment
+      name: n8n
+      
   - path: patches/pvc/n8n-pvc-patch.yaml
     target:
       kind: Deployment
       name: n8n
-
-  - path: patches/pvc/postgres-pvc-patch.yaml
-    target:
-      kind: Deployment
-      name: postgres
-patches:
-  - path: patches/pvc/redis-pvc-patch.yaml
-    target:
-      kind: Deployment
-      name: redis
-
-  - path: patches/pvc/evolution-pvc-patch.yaml
-    target:
-      kind: Deployment
-      name: evolution
 
   - path: patches/replicas/n8n-replicas-patch.yaml
     target:
       kind: Deployment
       name: n8n
 
-  - path: patches/replicas/evolution-replicas-patch.yaml
+  - path: patches/pvc/evolution-pvc-patch.yaml
     target:
       kind: Deployment
       name: evolution
 
-  - path: patches/initdb/patch-create-n8n-db.yaml
+  - path: patches/replicas/evolution-replicas-patch.yaml
     target:
       kind: Deployment
-      name: n8n   
+      name: evolution

@@ -6,7 +6,7 @@ spec:
   template:
     spec:
       initContainers:
-        - name: create-n8n-db
+        - name: create-prod-n8n-db
           image: postgres:15
           env:
             - name: PGPASSWORD
@@ -18,9 +18,9 @@ spec:
             - sh
             - -c
             - |
-              until psql -h postgres -U "$DB_POSTGRESDB_USER" -tc "SELECT 1 FROM pg_database WHERE datname = 'prod-n8n'" | grep -q 1; do
+              until psql -h postgres.infra.svc.cluster.local -U "$DB_POSTGRESDB_USER" -tc "SELECT 1 FROM pg_database WHERE datname = 'prod-n8n'" | grep -q 1; do
                 echo "Creating prod-n8n DB..."; 
-                psql -h postgres -U "$DB_POSTGRESDB_USER" -c "CREATE DATABASE \"prod-n8n\"";
+                psql -h postgres.infra.svc.cluster.local -U "$DB_POSTGRESDB_USER" -c "CREATE DATABASE \"prod-n8n\"";
                 sleep 2;
               done
           envFrom:
