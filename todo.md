@@ -6,5 +6,6 @@
 [] Definir IP fixo
 [] Migrar banco para database cloud
 [] Trabalhar segurança da infra
+[] Prometheus
 
 
