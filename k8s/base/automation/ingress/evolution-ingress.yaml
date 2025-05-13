@@ -10,13 +10,12 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: evolution.local
-      http:
+    - http:
         paths:
-          - path: /
+          - path: /evolution
             pathType: Prefix
             backend:
               service:
-                name: dev-evolution
+                name: evolution
                 port:
                   number: 8080
