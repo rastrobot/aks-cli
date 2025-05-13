@@ -1,0 +1,40 @@
+grafana:
+  adminPassword: admin123
+  service:
+    type: NodePort
+  persistence:
+    enabled: true
+    size: 1Gi
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+
+prometheus:
+  service:
+    type: NodePort
+  persistence:
+    enabled: true
+    size: 1Gi
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+
+alertmanager:
+  persistence:
+    enabled: true
+    size: 1Gi
+  resources:
+    requests:
+      memory: "128Mi"
+      cpu: "100m"
+    limits:
+      memory: "256Mi"
+      cpu: "200m"
