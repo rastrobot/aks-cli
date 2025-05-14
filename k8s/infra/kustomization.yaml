@@ -17,4 +17,8 @@ resources:
 - services/nginx-service.yaml
 - services/ingress-nginx-lb-service.yaml
 
+- clusterroles/ingress-nginx-role.yaml
+- serviceaccounts/ingress-nginx-sa.yaml
+- deployments/ingress-nginx-deployment.yaml
 - ingress/nginx-ingress.yaml
+- clusterrolebindings/ingress-nginx-binding.yaml
