@@ -3,8 +3,15 @@ kind: Ingress
 metadata:
   name: evolution-ingress
   namespace: dev
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - evolution.automatizei.chat
+      secretName: evolution-tls
   rules:
     - host: evolution.automatizei.chat
       http:
@@ -16,22 +23,3 @@ spec:
                 name: evolution
                 port:
                   number: 8080
-
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: evolution-ingress
-#   namespace: dev
-# spec:
-#   ingressClassName: nginx
-#   rules:
-#     - host: evolution.grcode.eastus.cloudapp.azure.com
-#       http:
-#         paths:
-#           - path: /
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: evolution
-#                 port:
-#                   number: 8080
