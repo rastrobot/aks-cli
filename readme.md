@@ -1,3 +1,7 @@
+# Limpar AZ
+az aks delete -g rg-aks-dev -n aks-dev-clean --yes --no-wait
+az group delete -n rg-aks-dev --yes --no-wait
+
 kubectl apply -k k8s/
 
 

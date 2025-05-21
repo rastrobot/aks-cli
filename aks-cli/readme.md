@@ -5,7 +5,7 @@ cd ~/Downloads/testes/kompose-convert/aks-cli
 docker run -it --rm \
   -v $HOME/.kube:/root/.kube \
   -v $HOME/.azure:/root/.azure \
-  -v $HOME/Downloads/testes/kompose-convert/k8s:/root \
+  -v $HOME/Downloads/testes/kompose-convert/COPY:/root \
   aks-cli
 
 az aks get-credentials --resource-group rg-aks-dev --name aks-dev-clean --overwrite-existing

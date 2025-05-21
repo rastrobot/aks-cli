@@ -1,0 +1,51 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# namePrefix: prod-
+namespace: prod
+
+resources:
+  - namespace.yaml
+  - ../../../base/automation
+  - pvc/evolution-pvc.yaml
+  - pvc/n8n-pvc.yaml
+
+  - secrets/evolution-secret.yaml
+  - secrets/n8n-secret.yaml
+
+configMapGenerator:
+  - name: postgres-config
+    behavior: create
+    literals:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+
+  - name: n8n-config
+    behavior: merge
+    literals:
+      - N8N_EDITOR_BASE_URL=http://dev-n8n:5678/
+
+patches:
+  - path: patches/initdb/patch-create-n8n-db.yaml
+    target:
+      kind: Deployment
+      name: n8n
+      
+  - path: patches/pvc/n8n-pvc-patch.yaml
+    target:
+      kind: Deployment
+      name: n8n
+
+  - path: patches/replicas/n8n-replicas-patch.yaml
+    target:
+      kind: Deployment
+      name: n8n
+
+  - path: patches/pvc/evolution-pvc-patch.yaml
+    target:
+      kind: Deployment
+      name: evolution
+
+  - path: patches/replicas/evolution-replicas-patch.yaml
+    target:
+      kind: Deployment
+      name: evolution

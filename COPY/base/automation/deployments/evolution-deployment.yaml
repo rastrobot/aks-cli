@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.35.0 (HEAD)
+  labels:
+    app: evolution
+    domain: automacao
+  name: evolution
+spec:
+  # replicas: 1
+  selector:
+    matchLabels:
+      app: evolution
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose.yml
+        kompose.version: 1.35.0 (HEAD)
+      labels:
+        app: evolution
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: evolution
+          image: atendai/evolution-api
+          envFrom:
+            - configMapRef:
+                name: evolution-config
+            - secretRef:
+                name: evolution-secret
+          # volumeMounts:
+          #   - mountPath: /evolution/instances
+          #     name: evolution-claim0
+
+      # volumes:
+      #   - name: evolution-claim0
+      #     persistentVolumeClaim:
+      #       claimName: evolution-claim0

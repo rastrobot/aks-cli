@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: evolution
+spec:
+  template:
+    spec:
+      containers:
+        - name: evolution
+          volumeMounts:
+            - name: dev-evolution-pvc
+              mountPath: /evolution/instances
+      volumes:
+        - name: dev-evolution-pvc
+          persistentVolumeClaim:
+            claimName: evolution-pvc
