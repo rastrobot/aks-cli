@@ -18,3 +18,5 @@ k
 alias k='kubectl'
 k get all -A
 exit
+k get all -A
+exit
