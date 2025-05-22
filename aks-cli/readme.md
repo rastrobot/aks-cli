@@ -9,6 +9,13 @@ docker run -it --rm \
   aks-cli \
   bash --rcfile /root/aks-cli/k-function.sh
 
+docker run -it --rm \
+  -v $HOME/Downloads/testes/kompose-convert/.config-container/.kube:/root/.kube \
+  -v $HOME/Downloads/testes/kompose-convert/.config-container/.azure:/root/.azure \
+  -v $HOME/Downloads/testes/kompose-convert/.:/root \
+  aks-cli \
+  bash --rcfile /root/aks-cli/k-function.sh
+  
 az aks get-credentials --resource-group rg-aks-dev --name aks-dev-clean --overwrite-existing
 
 kubectl get nodes
