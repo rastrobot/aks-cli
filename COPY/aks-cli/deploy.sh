@@ -9,18 +9,9 @@ echo "============================================================"
 
 # Ingress NGINX
 echo "🔧 Aplicando Ingress NGINX e Cert-Manager..."
-kubectl apply -f ingress-nginx.yaml
+kubectl apply -k infra
 echo "------------------------------------------------------------"
 
-# # Cert-Manager
-# echo "🔐 Aplicando Cert-Manager..."
-# kubectl apply -k infra/cert-manager
-# echo "------------------------------------------------------------"
-
-# ClusterIssuer (HTTPS Let's Encrypt)
-echo "🔐 Aplicando ClusterIssuer..."
-kubectl apply -f infra/clusterissuer.yaml
-echo "------------------------------------------------------------"
 
 # Shared (Redis, Postgres)
 echo "🗄️ Aplicando Shared..."
