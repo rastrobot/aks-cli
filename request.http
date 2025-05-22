@@ -25,3 +25,10 @@ apikey: 5CCECED5B7D1-476D-911F-EAEE2A027968
   "number": "5527999189700",
   "text": "teste"
 }
+
+### Teste Evolution
+GET https://evolution.automatizei.chat/manager/login
+
+### Teste N8N
+GET https://n8n.automatizei.chat
+Content-Type: application/json
