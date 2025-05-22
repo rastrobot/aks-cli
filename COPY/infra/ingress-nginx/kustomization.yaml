@@ -4,7 +4,6 @@ kind: Kustomization
 namespace: ingress-basic
 
 resources:
-  - namespace.yaml
   - serviceaccount.yaml
   - clusterrole.yaml
   - clusterrolebinding.yaml
